@@ -11,3 +11,11 @@ jobs:
         with:
           PASSWORD: ${{ '${{ secrets.THE_TOKEN }}' }}
           java-version: 21
+      - name: Check token presence (debug, non stampa il valore!)
+        run: |
+          if [ -z "${{ '${{ secrets.THE_TOKEN }}' }}" ]; then
+            echo "❌ No token found"
+            exit 1
+          else
+            echo "✅ Token is present"
+          fi
