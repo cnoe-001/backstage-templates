@@ -6,11 +6,6 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: JIB container build and publish
-        uses: MathieuSoysal/jib-container-publish.yml@v2.1.5
-        with:
-          PASSWORD: ${{ '${{ secrets.THE_TOKEN }}' }}
-          java-version: 21
       - name: Check token presence (debug, non stampa il valore!)
         run: |
           if [ -z "${{ '${{ secrets.THE_TOKEN }}' }}" ]; then
@@ -18,4 +13,9 @@ jobs:
             exit 1
           else
             echo "✅ Token is present"
-          fi
+          fi    
+      - name: JIB container build and publish
+        uses: MathieuSoysal/jib-container-publish.yml@v2.1.5
+        with:
+          PASSWORD: ${{ '${{ secrets.THE_TOKEN }}' }}
+          java-version: 21
